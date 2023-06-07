@@ -19,9 +19,4 @@ code {
   font-family: 'Nunito', sans-serif;
  }
 
- @media (max-width: 768px) {
-  .MuiStep-root:nth-child(n+4) {
-    display: none;
-  }
-}
 
