@@ -1,217 +1,132 @@
+import { Container, Grid, Typography } from '@mui/material';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
-import { useState, useEffect } from 'react';
-import Stack from '@mui/material/Stack';
+import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import SettingsIcon from '@mui/icons-material/Settings';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import VideoLabelIcon from '@mui/icons-material/VideoLabel';
-import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-import { Button, Grid, Typography } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Home from './Home/Home';
 import Tutorial from './Tutorial/tutorial';
 
-const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
-    [`&.${stepConnectorClasses.alternativeLabel}`]: {
-        top: 22,
-    },
-    [`&.${stepConnectorClasses.active}`]: {
-        [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage:
-                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
-        },
-    },
-    [`&.${stepConnectorClasses.completed}`]: {
-        [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage:
-                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
-        },
-    },
-    [`& .${stepConnectorClasses.line}`]: {
-        height: 3,
-        border: 0,
-        backgroundColor:
-            theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
-        borderRadius: 1,
-    },
-}));
+function App(props) {
 
-const ColorlibStepIconRoot = styled('div')(({ theme, ownerState }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
-    zIndex: 1,
-    color: '#fff',
-    width: 50,
-    height: 50,
-    display: 'flex',
-    borderRadius: '50%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...(ownerState.active && {
-        backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
-        boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
-    }),
-    ...(ownerState.completed && {
-        backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
-    }),
-}));
+    const drawerWidth = 240;
+    const navItems = ['Log in', 'Register'];
 
-function ColorlibStepIcon(props) {
-    const { active, completed, className } = props;
+    const { window } = props;
+    const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const icons = {
-        1: <SettingsIcon />,
-        2: <VideoLabelIcon />,
-        3: <GroupAddIcon />,
+    const handleDrawerToggle = () => {
+        setMobileOpen((prevState) => !prevState);
     };
 
-    return (
-        <ColorlibStepIconRoot ownerState={{ completed, active }} className={className}>
-            {icons[String(props.icon)]}
-        </ColorlibStepIconRoot>
+    const handleLanguage = () => {
+        console.log("funcionou")
+    }
+
+    const drawer = (
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+            <Divider />
+            <List>
+                {navItems.map((item) => (
+                    <ListItem key={item} disablePadding>
+                        <ListItemButton sx={{ textAlign: 'center' }}>
+                            <ListItemText primary={item} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+
+                <Button onClick={handleLanguage()} variant="text">En Espanol</Button>
+            </List>
+        </Box>
     );
-}
 
-ColorlibStepIcon.propTypes = {
-    /**
-     * Whether this step is active.
-     * @default false
-     */
-    active: PropTypes.bool,
-    className: PropTypes.string,
-    /**
-     * Mark the step as completed. Is passed to child components.
-     * @default false
-     */
-    completed: PropTypes.bool,
-    /**
-     * The label displayed in the step icon.
-     */
-    icon: PropTypes.node,
-};
+    const container = window !== undefined ? () => window().document.body : undefined;
 
 
-
-const steps = ['Home', 'Tutorial', 'My Family', 'teste'];
-
-function App() {
-    const [activeStep, setActiveStep] = useState(0);
-    const [completed, setCompleted] = React.useState({});
-
-    const isLastStep = () => {
-        return activeStep === totalSteps() - 1;
-    };
-
-    const allStepsCompleted = () => {
-        return completedSteps() === totalSteps();
-    };
-
-    const totalSteps = () => {
-        return steps.length;
-    };
-
-    const completedSteps = () => {
-        return Object.keys(completed).length;
-    };
-
-
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
-
-    const handleResize = () => {
-        setScreenWidth(window.innerWidth);
-        setScreenHeight(window.innerHeight);
-    };
-
-    useEffect(() => {
-        // Add event listener for window resize
-        window.addEventListener('resize', handleResize);
-
-        // Clean up the event listener on component unmount
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-
-    // const handleNext = () => {
-    //     debugger
-    //     const newActiveStep =
-    //         isLastStep() && !allStepsCompleted()
-    //             ? // It's the last step, but not all steps have been completed,
-    //             // find the first step that has been completed
-    //             steps.findIndex((step, i) => !(i in completed))
-    //             : activeStep + 1;
-    //     setActiveStep(newActiveStep);
-    // };
-
-    const handleNext = () => {
-        setActiveStep(prevActiveStep => prevActiveStep + 1);
-      };
-    
     return (
-        <Stack sx={{ width: '100%', margin: '1rem' }} spacing={4}>
 
-            {<Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-                <Step>
-                    <StepLabel StepIconComponent={ColorlibStepIcon}>Home</StepLabel>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, pl: '12rem' }}>
-                        {activeStep === 0 &&
-                            <React.Fragment>
-                                <h1>HOME</h1>
-                            </React.Fragment>
-                        }
+        <Container>
+            <Grid container spacing={2}>
+                <Box sx={{ display: 'flex' }}>
+                    <CssBaseline />
+                    <AppBar component="nav">
+                        <Toolbar>
+                            <IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                edge="start"
+                                onClick={handleDrawerToggle}
+                                sx={{ mr: 2, display: { sm: 'none' } }}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Button
+                                variant="h6"
+                                component="div"
+                                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                            >
+                                En Espanol
+                            </Button>
+                            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                                {navItems.map((item) => (
+                                    <Button key={item} sx={{ color: '#fff' }}>
+                                        {item}
+                                    </Button>
+                                ))}
+                            </Box>
+                        </Toolbar>
+                    </AppBar>
+                    <Box component="nav">
+                        <Drawer
+                            container={container}
+                            variant="temporary"
+                            open={mobileOpen}
+                            onClose={handleDrawerToggle}
+                            ModalProps={{
+                                keepMounted: true, // Better open performance on mobile.
+                            }}
+                            sx={{
+                                display: { xs: 'block', sm: 'none' },
+                                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                            }}
+                        >
+                            {drawer}
+                        </Drawer>
                     </Box>
-                </Step>
-
-                <Step>
-                    <StepLabel StepIconComponent={ColorlibStepIcon}>Tutorial</StepLabel>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', pt: 2, pl: '5rem' }}>
-                        {activeStep === 1 &&
-                            <React.Fragment>
-                                <Tutorial />
-                            </React.Fragment>
-                        }
+                    <Box component="main">
+                        {/* <Home/> */}
+                        <Tutorial />
                     </Box>
-                </Step>
+                </Box>
+                <Grid container spacing={2} >
+                    <Grid item xs={12} sm={12}>
+                        <Box component="main" >
+                            <Box sx={{ padding: '2rem', marginLeft: '5rem', marginRight: '5rem', height: '14rem', background: 'Lightgray' }}>
+                                <Grid >
+                                    <Grid item xs={12} sm={10}>
+                                        <Box>
+                                            <Typography >​The information contained on this website should not be used as a substitute for the medical care and advice of your pediatrician. There may be variations in treatment that your pediatrician may recommend based on individual facts and circumstances.​</Typography>
 
-                <Step>
-                    <StepLabel StepIconComponent={ColorlibStepIcon}>My Family</StepLabel>
-                    <div>
-                        {activeStep === 2 &&
-                            <React.Fragment>
-                                <h1>My Family</h1>
-                            </React.Fragment>
-                        }
-                    </div>
-                </Step>
+                                        </Box>
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        </Box>
+                    </Grid >
+                </Grid>
+            </Grid>
+        </Container>
 
-                <Step>
-                    <StepLabel StepIconComponent={ColorlibStepIcon}>Priorities</StepLabel>
-                    <div>
-                        {activeStep === 3 &&
-                            <React.Fragment>
-                                <h1>Priorities</h1>
-                            </React.Fragment>
-                        }
-                    </div>
-                </Step>
-
-            </Stepper>}
-
-            <Button onClick={handleNext} sx={{ mr: 1 }}>
-                Next
-            </Button>
-
-            <div>
-                <p>Screen width: {screenWidth}px</p>
-                <p>Screen height: {screenHeight}px</p>
-            </div>
-        </Stack>
     );
 
 }
