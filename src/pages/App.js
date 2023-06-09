@@ -16,6 +16,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Home from './Home/Home';
 import Tutorial from './Tutorial/tutorial';
+import Families from './Families/Families';
 
 function App(props) {
 
@@ -55,8 +56,8 @@ function App(props) {
 
     return (
 
-        <Container>
-            <Grid container spacing={2}>
+        <Container maxWidth='70rem'>
+            <Box >
                 <Box sx={{ display: 'flex' }}>
                     <CssBaseline />
                     <AppBar component="nav">
@@ -103,15 +104,16 @@ function App(props) {
                             {drawer}
                         </Drawer>
                     </Box>
-                    <Box component="main">
+                    <Box>
                         {/* <Home/> */}
+                        {/* <Families /> */}
                         <Tutorial />
                     </Box>
                 </Box>
                 <Grid container spacing={2} >
                     <Grid item xs={12} sm={12}>
                         <Box component="main" >
-                            <Box sx={{ padding: '2rem', marginLeft: '5rem', marginRight: '5rem', height: '14rem', background: 'Lightgray' }}>
+                            <Box sx={{ padding: '2rem', marginLeft: '5rem', marginRight: '5rem', height: '14rem', background: '#FAFAEF' }}>
                                 <Grid >
                                     <Grid item xs={12} sm={10}>
                                         <Box>
@@ -124,8 +126,8 @@ function App(props) {
                         </Box>
                     </Grid >
                 </Grid>
-            </Grid>
-        </Container>
+            </Box>
+        </ Container>
 
     );
 
