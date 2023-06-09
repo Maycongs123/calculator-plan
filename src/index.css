@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #444 !important;
 }
 
 code {
@@ -19,9 +20,4 @@ code {
   font-family: 'Nunito', sans-serif;
  }
 
- @media (max-width: 768px) {
-  .MuiStep-root:nth-child(n+4) {
-    display: none;
-  }
-}
 
