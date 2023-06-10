@@ -1,6 +1,6 @@
-import { Box, Button, Divider, Grid, Stack, TextField, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
-import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectPrioritesToMemberFamilyComponent";
+import SelectPrioritesToMemberFamilyComponent from "../../component/SelectPrioritesToMemberFamily/SelectPrioritesToMemberFamilyComponent";
 
 
 function CommunicatingAboutMedia() {

@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import AddTaskIcon from '@mui/icons-material/AddTask';
-import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectPrioritesToMemberFamilyComponent";
+import SelectPrioritesToMemberFamilyComponent from "../../component/SelectPrioritesToMemberFamily/SelectPrioritesToMemberFamilyComponent";
 
 
 function DigitalPrivacy() {

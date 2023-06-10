@@ -1,8 +1,6 @@
-import { Box, Button, Divider, Grid, Stack, TextField, Typography } from "@mui/material";
+import { Box,  Grid, Typography } from "@mui/material";
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
-import FamiliyMemberComponent from "../../component/FamileMember/FamileMemberComponent";
-import CheckBoxPriorites from "../../component/CheckBoxPriorites/CheckBoxPrioritesComponent";
-import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectPrioritesToMemberFamilyComponent";
+import SelectPrioritesToMemberFamilyComponent from "../../component/SelectPrioritesToMemberFamily/SelectPrioritesToMemberFamilyComponent";
 
 
 function MediaBalance() {
