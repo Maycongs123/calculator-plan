@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import AddReactionOutlinedIcon from '@mui/icons-material/AddReactionOutlined';
-import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectMediaBalanceComponent";
+import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectPrioritesToMemberFamilyComponent";
 
 
 function ChoosingGoodContent() {

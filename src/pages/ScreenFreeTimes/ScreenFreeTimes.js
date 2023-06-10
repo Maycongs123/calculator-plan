@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import NoCellIcon from '@mui/icons-material/NoCell';
-import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectMediaBalanceComponent";
+import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectPrioritesToMemberFamilyComponent";
 
 
 function ScreenFreeTimes() {

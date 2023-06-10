@@ -10,6 +10,7 @@ import ScreenFreeZones from '../ScreenFreeZones/ScreenFreeZones';
 import ScreenFreeTimes from '../ScreenFreeTimes/ScreenFreeTimes';
 import ChoosingGoodContent from '../ChoosingGoodContent/ChoosingGoodContent';
 import UsingMediaTogether from '../UsingMediaTogether/UsingMediaTogether';
+import { FamilyContextProvider } from '../../context/context';
 
 function Tutorial() {
   const [activeStep, setActiveStep] = useState(1);
@@ -50,27 +51,27 @@ function Tutorial() {
           </Grid>
         </Grid>
       case 2:
-        return <Families />;
+        return <FamilyContextProvider> <Families /> </FamilyContextProvider>;
       case 3:
-        return <Priorities />;
+        return <FamilyContextProvider> <Priorities /> </FamilyContextProvider>;
       case 4:
-        return <MediaBalance />;
+        return <FamilyContextProvider> <MediaBalance /> </FamilyContextProvider>;
       case 5:
-        return <CommunicatingAboutMedia />;
+        return <FamilyContextProvider> <CommunicatingAboutMedia /></FamilyContextProvider>;
       case 6:
-        return <KindnessAndEmpathy />;
+        return <FamilyContextProvider> <KindnessAndEmpathy /></FamilyContextProvider>;
       case 7:
-        return <DigitalPrivacy />;
+        return <FamilyContextProvider> <DigitalPrivacy /></FamilyContextProvider>;
       case 8:
-        return <ScreenFreeZones />;
+        return <FamilyContextProvider> <ScreenFreeZones /></FamilyContextProvider>;
       case 9:
-        return <ScreenFreeTimes />;
+        return <FamilyContextProvider> <ScreenFreeTimes /></FamilyContextProvider>;
       case 10:
-        return <ChoosingGoodContent />;
+        return <FamilyContextProvider> <ChoosingGoodContent /></FamilyContextProvider>;
       case 11:
-        return <UsingMediaTogether />;
+        return <FamilyContextProvider> <UsingMediaTogether /></FamilyContextProvider>;
       case 12:
-        return <UsingMediaTogether />;
+        return <FamilyContextProvider> <UsingMediaTogether /></FamilyContextProvider>;
       default:
         return null;
     }
@@ -109,7 +110,7 @@ function Tutorial() {
   };
 
   return (
-    
+
     <Grid sx={{ marginTop: '8rem' }} container spacing={2}>
       <Grid item xs={8} sm={12}>
         <Box component="main">
@@ -121,17 +122,17 @@ function Tutorial() {
             <Grid>
               <Grid item xs={8} sm={12}>
                 <Box sx={{ width: '100%' }}>
-                <Button
-                      
-                      disabled={activeStep === 0}
-                      onClick={handleBack}
-                      sx={{ mr: 1, margin: '40px' }}
-                    >
-                      Back
-                    </Button>
-                <Button variant="contained" onClick={handleNext}  sx={{ mr: 1, margin: '40px' }}>
-                      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                    </Button>
+                  <Button
+
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1, margin: '40px' }}
+                  >
+                    Back
+                  </Button>
+                  <Button variant="contained" onClick={handleNext} sx={{ mr: 1, margin: '40px' }}>
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  </Button>
                   <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (
                       <Step key={label}>

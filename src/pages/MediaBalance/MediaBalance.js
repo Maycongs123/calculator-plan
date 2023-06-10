@@ -2,7 +2,7 @@ import { Box, Button, Divider, Grid, Stack, TextField, Typography } from "@mui/m
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import FamiliyMemberComponent from "../../component/FamileMember/FamileMemberComponent";
 import CheckBoxPriorites from "../../component/CheckBoxPriorites/CheckBoxPrioritesComponent";
-import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectMediaBalanceComponent";
+import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectPrioritesToMemberFamilyComponent";
 
 
 function MediaBalance() {

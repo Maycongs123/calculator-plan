@@ -1,6 +1,5 @@
 import { Container, Grid, Typography } from '@mui/material';
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,9 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import Home from './Home/Home';
 import Tutorial from './Tutorial/tutorial';
-import Families from './Families/Families';
 
 function App(props) {
 
