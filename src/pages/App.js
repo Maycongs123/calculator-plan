@@ -101,13 +101,14 @@ function App(props) {
                             {drawer}
                         </Drawer>
                     </Box>
-                    <Box>
+              
+                </Box>
+            </Box>
+            <Box>
                         {/* <Home/> */}
                         {/* <Families /> */}
                         <Tutorial />
                     </Box>
-                </Box>
-            </Box>
         </ Container>
 
     );

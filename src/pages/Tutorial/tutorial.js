@@ -41,7 +41,46 @@ function Tutorial() {
   ];
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    console.log(activeStep)
+    debugger
+    // let step = activeStep
+    // let teste = changeActualStep(step)
+    //chamar funcao aqui
+
   };
+
+  const changeActualStep = (step)=>{
+    debugger
+
+    switch (step) {
+      case 1: return getVisibleSteps(1,4); 
+      case 2: return getVisibleSteps(1, 4);
+
+      return;
+      case 3: steps.slice(2, 5);
+
+      return;
+      case 4: steps.slice(3, 6);
+
+      return;
+      case 5: steps.slice(4, 7);
+
+      return;
+      case 6: steps.slice(5, 8);
+
+      return;
+      case 7: steps.slice(6, 9);
+
+      return;
+      case 8: steps.slice(7, 10);
+
+      return;
+
+
+      default:
+        break;
+    }
+  }
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -99,7 +138,7 @@ function Tutorial() {
       case 0:
         return <Step1Component />;
       case 1:
-        return <Box > 
+        return <Box >
           <Box >
             <Box sx={{ padding: '2rem', marginLeft: '5rem', marginRight: '5rem', background: 'white' }}>
               Inserir Video Aqui
@@ -163,11 +202,23 @@ function Tutorial() {
       default:
         return null;
     }
-  };
+  }; 
+  
+  const isMobileStep = window.innerWidth < 768; // Verifica se está em um dispositivo móvel
+
+  const stepsToDisplay = isMobileStep ? 3 : steps.length;
 
   const getVisibleSteps = (recuoStep, avancoStep) => {
-    if (windowSize < 600) {
-      return steps.slice(0, 3);
+    debugger
+    if (isMobile(windowSize)) {
+      if(recuoStep === undefined){
+        return steps.slice(activeStep, activeStep + stepsToDisplay)
+      }
+
+      return steps.slice(recuoStep, avancoStep)
+     
+
+
     } else {
       return steps;
     }
@@ -175,7 +226,7 @@ function Tutorial() {
 
   function ColorlibStepIcon(props) {
     const { active, completed, className } = props;
-
+    debugger
     const icons = {
       1: <SettingsIcon />,
       2: <GroupAddIcon />,
@@ -201,67 +252,28 @@ function Tutorial() {
       </ColorlibStepIconRoot>
     );
   }
+
   
+
   const windowSize = useWindowSize();
 
   const DESKTOP_SMALL_SIZE = 1023;
   const isMobile = (windowSize) => windowSize.width <= DESKTOP_SMALL_SIZE;
 
   return (
-   //mobile
-    // <Box sx={{marginBottom: '8rem' ,marginTop: '8rem', background: 'yellow',}} >
-    //   <Box >
-    //     <Box sx={{ background: 'white'}}>
-    //         {renderStepContentHeader(activeStep)}
-    //     <Box>
-    //     <Box sx={{marginTop: '2rem', background: 'white'}}>
-
-    //       <Stepper alternativeLabel activeStep={activeStep}  connector={<ColorlibConnector/>}>
-    //         {getVisibleSteps().map((label) => (
-    //         <Step key={label}>
-    //           <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
-    //         </Step>
-    //         ))}
-    //       </Stepper>
-
-    //     <Button disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
-    //       Back
-    //     </Button>
-    //     <Button variant="contained" onClick={handleNext}>
-    //     {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-    //     </Button>
-    //     </Box>
-    //   </Box>
-
-    //  <Box >
-    //     <Box sx={{ padding: '2rem', }}>
-    //       {renderStepContent(activeStep)}
-    //     </Box>
-    //     <Box sx={{ padding: '2rem', background: '#FAFAEF'}}>
-    //       <Box >
-    //         <Box sx={{ marginBottom: '5rem'}}>
-    //           <Typography >​The information contained on this website should not be used as a substitute for the medical care and advice of your pediatrician. There may be variations in treatment that your pediatrician may recommend based on individual facts and circumstances.​</Typography>
-    //         </Box>
-    //       </Box>
-    //     </Box>
-    //   </Box>
-    //     </Box>
-
-    //   </Box>
-    // </Box>
 
     <Box marginTop="8rem">
       <Box>
         <Box
-          sx={{ background: "white"}}
+          sx={{ background: "white" }}
           marginLeft={isMobile(windowSize) ? "0rem" : "8rem"}
           marginRight={isMobile(windowSize) ? "0rem" : "8rem"}
-          marginBottom={isMobile(windowSize) ? "0rem" : "8rem"}
+
         >
           {renderStepContentHeader(activeStep)}
           <Box>
             <Box sx={{ marginTop: "2rem", background: "white" }}>
-              <Stepper
+            <Stepper
                 alternativeLabel
                 activeStep={activeStep}
                 connector={<ColorlibConnector />}
@@ -282,9 +294,12 @@ function Tutorial() {
               >
                 Back
               </Button>
+              
               <Button variant="contained" onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                {/* {activeStep === steps.length - 1 ? "Finish" : "Next"} */}
+                NEXT
               </Button>
+               
             </Box>
           </Box>
 
@@ -298,11 +313,11 @@ function Tutorial() {
               <Box>
                 <Box sx={{ marginBottom: "5rem" }}>
                   <Typography>
-                    ​The information contained on this website should not be
+                    The information contained on this website should not be
                     used as a substitute for the medical care and advice of your
                     pediatrician. There may be variations in treatment that your
                     pediatrician may recommend based on individual facts and
-                    circumstances.​
+                    circumstances.
                   </Typography>
                 </Box>
               </Box>
@@ -345,7 +360,7 @@ const Step2ComponentHeader = () => {
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
         To get started, create a profile for each member of your family. Include
         th​eir names and ages. You can even add fun avatars for each family
-        member. Add as many family members as you need.​​​​​
+        member. Add as many family members as you need.
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "end" }}>
         <Typography>
@@ -362,7 +377,7 @@ const Step3ComponentHeader = () => {
       <Typography variant="h4">Choose Your Media Priorities</Typography>
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
         Select priorities from the list below that matter the most ​​​to your
-        family.​​​​​
+        family.
       </Typography>
     </Box>
   );
@@ -373,10 +388,10 @@ const Step4ComponentHeader = () => {
     <Box sx={{ padding: "2rem", background: "#D5D3C1" }}>
       <Typography variant="h4">Media Balance</Typography>
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
-        ​Whether at home, school or work, we are surrounded by media and digital
+        Whether at home, school or work, we are surrounded by media and digital
         devices. At the same time, we know that face-to-face time with family,
         friends and teachers is important to a child’s learning and healthy
-        development.​​​​​
+        development.
       </Typography>
     </Box>
   );
@@ -390,7 +405,7 @@ const Step5ComponentHeader = () => {
         Media shouldn’t be a taboo topic. It’s all around us, so we have to
         talk​ about it. The more you discuss it as part of your daily routine —
         in the car, dinner table or at a regular family meeting —​ the more
-        natural it will become. ​
+        natural it will become.
       </Typography>
     </Box>
   );
@@ -403,7 +418,7 @@ const Step6ComponentHeader = () => {
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
         Having family expectations about being kind and understanding of others
         — both online and off — is key to healthy, respectful relationships and
-        positive media use. ​
+        positive media use.
       </Typography>
     </Box>
   );
@@ -414,12 +429,12 @@ const Step7ComponentHeader = () => {
     <Box sx={{ padding: "2rem", background: "#D5D3C1" }}>
       <Typography variant="h4">Digital Privacy & Safety</Typography>
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
-        ​The internet is still a bit like the Wild West. Certainly, it is not
+        The internet is still a bit like the Wild West. Certainly, it is not
         always designed with kids in mind. Talking about digital safety rules
         can help your child navigate the digital landscape. You can also use a
         combination of tools: privacy settings, reporting and flagging
-        inappropriate content and ongoing conversations about online behavior. ​
-        ​
+        inappropriate content and ongoing conversations about online behavior.
+
       </Typography>
     </Box>
   );
@@ -430,9 +445,9 @@ const Step8ComponentHeader = () => {
     <Box sx={{ padding: "2rem", background: "#D5D3C1" }}>
       <Typography variant="h4">Screen Free Zones</Typography>
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
-        ​​​​​​Having areas of your home remain screen-free benefits a child's
+        Having areas of your home remain screen-free benefits a child's
         health and development in many ways. A big part of this is understanding
-        and agreeing as a family where screens are not allowed. ​
+        and agreeing as a family where screens are not allowed.
       </Typography>
     </Box>
   );
@@ -443,10 +458,10 @@ const Step9ComponentHeader = () => {
     <Box sx={{ padding: "2rem", background: "#D5D3C1" }}>
       <Typography variant="h4">Screen Free Times</Typography>
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
-        ​Screens don't have to be in every moment and every space of our day,
+        Screens don't have to be in every moment and every space of our day,
         trying to grab everyone's attention. Carving out time for family
         conversations and play is really important for your child’s health and
-        development. ​
+        development.
       </Typography>
     </Box>
   );
@@ -457,11 +472,11 @@ const Step10ComponentHeader = () => {
     <Box sx={{ padding: "2rem", background: "#D5D3C1" }}>
       <Typography variant="h4">Choosing Good Content</Typography>
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
-        ​​​​​There are millions of shows, apps and video games​ trying to get
+        There are millions of shows, apps and video games​ trying to get
         your family’s attention. Finding content that is a good fit with your
         family can take work. However, it’s worth it to find media that gives
         your child creative experiences, positive role models and true
-        enjoyment.​ ​
+        enjoyment.
       </Typography>
     </Box>
   );
@@ -472,11 +487,11 @@ const Step11ComponentHeader = () => {
     <Box sx={{ padding: "2rem", background: "#D5D3C1" }}>
       <Typography variant="h4">Using Media Together</Typography>
       <Typography sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
-        ​​​​​​​​​​Not all screen time is created equal. Enjoying movie night,
+        Not all screen time is created equal. Enjoying movie night,
         watching an educational video or exploring a learning app together, for
         example, turns screen time into family time. Using digital media
         together can build bonds, promote learning and show your child that you
-        care about what matters to them. ​​ ​
+        care about what matters to them.
       </Typography>
     </Box>
   );
