@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import SlideshowOutlinedIcon from '@mui/icons-material/SlideshowOutlined';
-import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectMediaBalanceComponent";
+import SelectPrioritesToMemberFamilyComponent from "../../component/SelectMediaBalance/SelectPrioritesToMemberFamilyComponent";
 
 
 function UsingMediaTogether() {

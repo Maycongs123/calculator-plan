@@ -1,6 +1,5 @@
 import { Container, Grid, Typography } from '@mui/material';
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,9 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import Home from './Home/Home';
 import Tutorial from './Tutorial/tutorial';
-import Families from './Families/Families';
 
 function App(props) {
 
@@ -110,22 +107,6 @@ function App(props) {
                         <Tutorial />
                     </Box>
                 </Box>
-                <Grid container spacing={2} >
-                    <Grid item xs={12} sm={12}>
-                        <Box component="main" >
-                            <Box sx={{ padding: '2rem', marginLeft: '5rem', marginRight: '5rem', height: '14rem', background: '#FAFAEF' }}>
-                                <Grid >
-                                    <Grid item xs={12} sm={10}>
-                                        <Box>
-                                            <Typography >​The information contained on this website should not be used as a substitute for the medical care and advice of your pediatrician. There may be variations in treatment that your pediatrician may recommend based on individual facts and circumstances.​</Typography>
-
-                                        </Box>
-                                    </Grid>
-                                </Grid>
-                            </Box>
-                        </Box>
-                    </Grid >
-                </Grid>
             </Box>
         </ Container>
 
