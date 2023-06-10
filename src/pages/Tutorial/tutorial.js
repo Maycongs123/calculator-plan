@@ -256,6 +256,7 @@ function Tutorial() {
           sx={{ background: "white"}}
           marginLeft={isMobile(windowSize) ? "0rem" : "8rem"}
           marginRight={isMobile(windowSize) ? "0rem" : "8rem"}
+          marginBottom={isMobile(windowSize) ? "0rem" : "8rem"}
         >
           {renderStepContentHeader(activeStep)}
           <Box>
