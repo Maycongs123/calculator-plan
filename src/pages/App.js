@@ -107,22 +107,6 @@ function App(props) {
                         <Tutorial />
                     </Box>
                 </Box>
-                <Grid container spacing={2} >
-                    <Grid item xs={12} sm={12}>
-                        <Box component="main" >
-                            <Box sx={{ padding: '2rem', marginLeft: '5rem', marginRight: '5rem', height: '14rem', background: '#FAFAEF' }}>
-                                <Grid >
-                                    <Grid item xs={12} sm={10}>
-                                        <Box>
-                                            <Typography >​The information contained on this website should not be used as a substitute for the medical care and advice of your pediatrician. There may be variations in treatment that your pediatrician may recommend based on individual facts and circumstances.​</Typography>
-
-                                        </Box>
-                                    </Grid>
-                                </Grid>
-                            </Box>
-                        </Box>
-                    </Grid >
-                </Grid>
             </Box>
         </ Container>
 
